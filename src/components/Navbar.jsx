@@ -5,8 +5,7 @@ import moonBordered from '../assets/moon-bordered.svg'
 import { Link } from 'react-router-dom'
 
 const Navbar = ({lightmode, SetLightmode}) => {
-    
-return (
+    return (
         <div className="navbar" style={ lightmode ? {backgroundColor: "var(--white)", color: "var(--black)"} : {backgroundColor: "var(--dark)", color: "var(--white)"}}>
             <div className="title-container">
                 <Link className="title">The Flag App</Link>
