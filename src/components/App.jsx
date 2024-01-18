@@ -8,12 +8,14 @@ import { useState } from "react"
 
 function App() {
   
-  const [lightmode, SetLightmode] = useState(true);
+  const [lightmode, setLightmode] = useState(true);
+  const [allCountries, setAllCountries] = useState([]);
+  const [countryList, setCountryList] = useState([]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout lightmode={lightmode} SetLightmode={SetLightmode} />}>
-        <Route index element={<Homepage lightmode={lightmode} />} />
+      <Route path="/" element={<Layout lightmode={lightmode} setLightmode={setLightmode} allCountries={allCountries} setCountryList={setCountryList} />}>
+        <Route index element={<Homepage lightmode={lightmode} allCountries={allCountries} setAllCountries={setAllCountries} countryList={countryList} setCountryList={setCountryList} />} />
         <Route path="/:id" element={<CountryPage lightmode={lightmode} />} />
       </Route>
     )

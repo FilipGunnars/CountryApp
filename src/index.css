@@ -104,7 +104,7 @@
   width: 100%;
   padding: 20px 80px;
   gap: 70px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .country-card {
@@ -159,7 +159,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 85px 20px 80px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .region-filter-container {
@@ -201,6 +201,10 @@
 
 .dropdown-item:hover {
   box-shadow: 0px 0px 30px 30px rgba(205, 201, 224, 0.583) inset;
+}
+
+.searchbar {
+
 }
 
 /* Countrypage styling */

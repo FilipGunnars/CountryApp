@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar"
 import Dropdown from "./Dropdown"
 
-const Homepage = ({lightmode}) => {
-    const [countryList, setCountryList] = useState([]);
+const Homepage = ({lightmode, allCountries, setAllCountries, countryList, setCountryList}) => {
     
     useEffect(() => {
-        const fetchAllCountrys = async () => {
-            const countrys = await fetch('https://restcountries.com/v3.1/all');
-            const jsonCountrys = await countrys.json();
-            const sortedCountries = jsonCountrys.sort((a, b) => a.name.common.localeCompare(b.name.common));
+        const fetchAllCountries = async () => {
+            const countries = await fetch('https://restcountries.com/v3.1/all');
+            const jsonCountries = await countries.json();
+            const sortedCountries = jsonCountries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+            setAllCountries(sortedCountries);
             setCountryList(sortedCountries);
         }
 
-        fetchAllCountrys();
+        fetchAllCountries();
     }, []);
 
     console.log(countryList)
@@ -24,7 +24,7 @@ const Homepage = ({lightmode}) => {
         <div className="homepage" style={ lightmode ? {backgroundColor: "var(--light)", color: "var(--black)"} : {backgroundColor: "var(--darkest)", color: "var(--white)"}}>
             <div className="filters-container">
                 <SearchBar />
-                <Dropdown lightmode={lightmode} />
+                <Dropdown lightmode={lightmode} setCountryList={setCountryList} allCountries={allCountries} />
             </div>
             <div className="countrys-container">
                 {countryList.map((country) => {
