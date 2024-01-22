@@ -19,10 +19,10 @@ const Dropdown = ({lightmode, allCountries, setCountryList}) => {
             <p>Filter by Region</p>
             <img src={ lightmode ? arrowDownDark : arrowDownLight } alt="Arrow down" />
             <div className={`dropdown-list ${dropdownVisible ? 'visible' : ''}`}>
-                <p className='dropdown-item' onClick={() => {sortByRegion("Africa")}} >Africa</p>
-                <p className='dropdown-item' onClick={() => {sortByRegion("Americas")}}>America</p>
-                <p className='dropdown-item' onClick={() => {sortByRegion("Asia")}}>Asia</p>
-                <p className='dropdown-item' onClick={() => {sortByRegion("Europe")}}>Europe</p>
+                <p className='dropdown-item' onClick={()=>{sortByRegion("Africa")}} >Africa</p>
+                <p className='dropdown-item' onClick={()=>{sortByRegion("Americas")}}>America</p>
+                <p className='dropdown-item' onClick={()=>{sortByRegion("Asia")}}>Asia</p>
+                <p className='dropdown-item' onClick={()=>{sortByRegion("Europe")}}>Europe</p>
             </div>
         </div>
     );
