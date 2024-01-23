@@ -1,5 +1,8 @@
 import arrowLeft from "../assets/arrow-left.svg";
 import arrowLeftDark from "../assets/arrow-left-dark.svg";
+import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
+import NotFound from "./NotFound";
 
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -7,13 +10,20 @@ import { Link, useParams } from "react-router-dom";
 const CountryPage = ({ lightmode, allCountries, setSearchTerm }) => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
   const [country, setCountry] = useState();
 
   useEffect(() => {
     const fetchCountryInfo = async () => {
-      const country = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
-      const jsonCountry = await country.json();
-      setCountry(jsonCountry[0]);
+      try {
+        const country = await fetch(
+          `https://restcountries.com/v3.1/alpha/${id}`
+        );
+        const jsonCountry = await country.json();
+        setCountry(jsonCountry[0]);
+      } catch (e) {
+        setError(e);
+      }
       setLoading(false);
     };
 
@@ -21,11 +31,15 @@ const CountryPage = ({ lightmode, allCountries, setSearchTerm }) => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="loader-page">
-        <div className="loader"></div>
-      </div>
-    );
+    return <LoadingPage lightmode={lightmode} />;
+  }
+
+  if (error) {
+    return <ErrorPage lightmode={lightmode} />;
+  }
+
+  if (!country) {
+    return <NotFound lightmode={lightmode} />;
   }
 
   const borderCountries = country.borders;

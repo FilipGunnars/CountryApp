@@ -1,6 +1,8 @@
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/Dropdown";
 import CountryCard from "../components/CountryCard";
+import ErrorPage from "./ErrorPage";
+import LoadingPage from "./LoadingPage";
 
 import { useEffect, useState } from "react";
 
@@ -14,16 +16,21 @@ const Homepage = ({
   setSearchTerm,
 }) => {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const fetchAllCountries = async () => {
-      const countries = await fetch("https://restcountries.com/v3.1/all");
-      const jsonCountries = await countries.json();
-      const sortedCountries = jsonCountries.sort((a, b) =>
-        a.name.common.localeCompare(b.name.common)
-      );
-      setAllCountries(sortedCountries);
-      setCountryList(sortedCountries);
+      try {
+        const countries = await fetch("https://restcountries.com/v3.1/all");
+        const jsonCountries = await countries.json();
+        const sortedCountries = jsonCountries.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
+        setAllCountries(sortedCountries);
+        setCountryList(sortedCountries);
+      } catch (e) {
+        setError(e);
+      }
       setLoading(false);
     };
 
@@ -31,11 +38,11 @@ const Homepage = ({
   }, []);
 
   if (loading) {
-    return (
-      <div className="loader-page">
-        <div className="loader"></div>
-      </div>
-    );
+    return <LoadingPage lightmode={lightmode} />;
+  }
+
+  if (error) {
+    return <ErrorPage lightmode={lightmode} />;
   }
 
   return (

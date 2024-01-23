@@ -15,6 +15,9 @@
   padding: 0;
 }
 
+
+/* Loader styling */
+
 .loader-page {
   width: 100%;
   height: 100vh;
@@ -50,6 +53,25 @@
 
 @keyframes l12 { 
   100%{transform: rotate(.5turn)}
+}
+
+/* Error page styling */
+
+.error-page-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.not-found-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding-top: 100px;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Navbar styling */
@@ -186,7 +208,16 @@
 }
 
 .country-card-title {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.country-card-data-container {
+  display: flex;
+  gap: 5px;
+}
+
+.country-card-data-property {
   font-weight: 600;
 }
 
@@ -220,13 +251,12 @@
   top: 200px;
   background-color: inherit;
   border-radius: 5px;
-  font-weight: 300;
   width: 205px;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-20px);
-  transition: 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .dropdown-list.visible {
@@ -236,8 +266,9 @@
 }
 
 .dropdown-item {
-  padding: 3px 20px;
-  font-size: 18px;
+  padding: 5px 20px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .dropdown-item:hover {

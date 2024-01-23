@@ -1,5 +1,6 @@
 import Homepage from "../pages/HomePage";
 import CountryPage from "../pages/CountryPage";
+import NotFound from "../pages/NotFound";
 import Layout from "../Layouts/Layout";
 
 import { useState } from "react";
@@ -54,6 +55,7 @@ function App() {
             />
           }
         />
+        <Route path="*" element={<NotFound lightmode={lightmode} />} />
       </Route>
     )
   );

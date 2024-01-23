@@ -20,9 +20,18 @@ const CountryCard = ({ country, lightmode }) => {
       </div>
       <div className="country-card-info">
         <p className="country-card-title">{country.name.common}</p>
-        <p>{`Population: ${country.population.toLocaleString("en-US")}`}</p>
-        <p>{`Region: ${country.region}`}</p>
-        <p>{`Capital: ${country.capital}`}</p>
+        <div className="country-card-data-container">
+          <p className="country-card-data-property">Population:</p>
+          <p>{country.population.toLocaleString("en-US")}</p>
+        </div>
+        <div className="country-card-data-container">
+          <p className="country-card-data-property">Region:</p>
+          <p>{country.region}</p>
+        </div>
+        <div className="country-card-data-container">
+          <p className="country-card-data-property">Capital:</p>
+          <p>{country.capital}</p>
+        </div>
       </div>
     </Link>
   );
